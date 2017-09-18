@@ -37,7 +37,7 @@ Server.prototype.connect = function(secret, instance){
     this.connectInstance = instance || "n"
     a = this.address.split("@")
     this.userSecret = a[0]
-    this.socket = new WebSocket('ws://10.138.186.205:8000/server'); //
+    this.socket = new WebSocket('ws://multipyer.lightopa.com/server'); //
 
         // Log errors
     this.socket.onerror = function (error) {
