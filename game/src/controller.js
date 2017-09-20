@@ -32,8 +32,8 @@ controller.prototype = {
 
         document.getElementById("go").onclick = function(){
             instance = document.getElementById("incode").value
-            this.server = new Server("0001198dd8c690c2c429d56b629ba6cf47b05087dd0a5924d017@multipyer")
-            this.server.connect("GS02583a", instance)
+            this.server = new Server("00017816b8d47b6ab5b1fe44f482414dae8b19e1069bbcba6ece@multipyer")
+            this.server.connect("GS02ec3c", instance)
         }.bind(this)
 	},
 

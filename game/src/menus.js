@@ -9,8 +9,8 @@ title.prototype = {
 
 		v.swords = []
 
-		v.server = new Server("0001198dd8c690c2c429d56b629ba6cf47b05087dd0a5924d017@multipyer")
-        v.server.connect("GS02583a")
+		v.server = new Server("00017816b8d47b6ab5b1fe44f482414dae8b19e1069bbcba6ece@multipyer")
+        v.server.connect("GS02ec3c")
 
 		this.ids = 0
 
