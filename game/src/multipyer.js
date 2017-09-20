@@ -37,7 +37,8 @@ Server.prototype.connect = function(secret, instance){
     this.connectInstance = instance || "n"
     a = this.address.split("@")
     this.userSecret = a[0]
-    this.socket = new WebSocket('ws://multipyer.lightopa.com/server'); //
+    //this.socket = new WebSocket('ws://10.138.186.201:8000/server');
+    this.socket = io.connect('http://multipyer.lightopa.com/serverio', {reconnection: false});
 
         // Log errors
     this.socket.onerror = function (error) {
@@ -45,12 +46,12 @@ Server.prototype.connect = function(secret, instance){
     }.bind(this);
 
     // Log messages from the server
-    this.socket.onmessage = function (e) {
-        data = JSON.parse(e.data)
+    this.socket.on('send', function (e) {
+        data = JSON.parse(e)
         //console.log(data)
         if (data.action == this.locals.HANDSHAKE){
             this.unid = data.unid
-            p = {"action": this.locals.AUTH, "user": this.userSecret, "server": this.gsecret, "instance": this.connectInstance}
+            p = {"action": this.locals.AUTH, "user": this.userSecret, "server": this.gsecret, "instance": this.connectInstance, "target":"s"}
             this.send(p)
         }
 
@@ -67,11 +68,11 @@ Server.prototype.connect = function(secret, instance){
         else {
             this.received.push(data)
         }
-    }.bind(this);
+    }.bind(this))
 
 }
 
 Server.prototype.send = function(data){
     data.origin = this.unid
-    this.socket.send(JSON.stringify(data))
+    this.socket.emit('send', JSON.stringify(data))
 }
